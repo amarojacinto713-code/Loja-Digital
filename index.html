@@ -9,198 +9,390 @@
 <style>
 
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial,sans-serif;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --black:#030706;
+    --navy:#071426;
+    --navy2:#0b1d35;
+    --darkgreen:#06231d;
+    --green:#00c98b;
+    --green2:#009f70;
+    --text:#f5f8f7;
+    --muted:#a9b8b5;
+    --border:rgba(0,201,139,.18);
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-background:#f4f5f7;
-color:#222;
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(0,201,139,.15),transparent 28%),
+        radial-gradient(circle at 85% 25%,rgba(15,55,100,.25),transparent 30%),
+        linear-gradient(135deg,
+        var(--black) 0%,
+        var(--navy) 38%,
+        var(--darkgreen) 72%,
+        #03110e 100%);
+    color:var(--text);
+    min-height:100vh;
 }
 
+/* HEADER */
+
 header{
-background:#111;
-color:white;
-padding:16px 5%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:100;
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(3,7,6,.86);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--border);
+}
+
+.nav{
+    max-width:1120px;
+    margin:auto;
+    padding:17px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .logo{
-font-size:21px;
-font-weight:bold;
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:-.5px;
 }
 
-nav button{
-width:auto;
-padding:9px 15px;
-margin-left:5px;
+.logo:before{
+    content:'$';
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:42px;
+    margin-right:10px;
+    border-radius:13px;
+    color:#03110d;
+    background:linear-gradient(135deg,#00e09a,#00a874);
+    font-size:22px;
+    box-shadow:0 8px 25px rgba(0,201,139,.25);
 }
 
-.container{
-width:92%;
-max-width:1200px;
-margin:30px auto;
+.help{
+    border:1px solid rgba(0,201,139,.35);
+    background:rgba(0,201,139,.08);
+    color:#55e8b5;
+    padding:11px 18px;
+    border-radius:999px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
 }
+
+.help:hover{
+    background:rgba(0,201,139,.16);
+    transform:translateY(-2px);
+}
+
+/* HERO */
 
 .hero{
-background:white;
-padding:35px;
-border-radius:15px;
-text-align:center;
-margin-bottom:25px;
+    max-width:1120px;
+    margin:auto;
+    padding:75px 22px 55px;
+    text-align:center;
+    position:relative;
+}
+
+.hero:before{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    left:50%;
+    top:30px;
+    transform:translateX(-50%);
+    background:rgba(0,201,139,.08);
+    filter:blur(90px);
+    border-radius:50%;
+    z-index:-1;
+}
+
+.badge{
+    display:inline-block;
+    border:1px solid rgba(0,201,139,.28);
+    background:rgba(0,201,139,.08);
+    color:#51e8b6;
+    padding:10px 20px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.4px;
+    margin-bottom:25px;
 }
 
 .hero h1{
-margin-bottom:10px;
+    font-size:clamp(38px,6vw,66px);
+    line-height:1.04;
+    max-width:900px;
+    margin:0 auto 24px;
+    letter-spacing:-2px;
 }
 
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
+.hero h1 strong{
+    background:linear-gradient(90deg,#00d99a,#53efbd);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
 }
 
-.product{
-background:white;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 3px 15px rgba(0,0,0,.07);
+.hero p{
+    max-width:720px;
+    margin:auto;
+    color:var(--muted);
+    font-size:19px;
+    line-height:1.7;
 }
 
-.product img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
+/* PRODUTOS */
 
-.product-content{
-padding:18px;
-}
-
-.product h3{
-margin-bottom:10px;
-}
-
-.price{
-font-size:21px;
-font-weight:bold;
-margin:14px 0;
-}
-
-button{
-background:#111;
-color:white;
-border:0;
-padding:13px 17px;
-border-radius:8px;
-cursor:pointer;
-font-weight:bold;
-}
-
-button:hover{
-opacity:.9;
-}
-
-.green{
-background:#25D366;
-}
-
-.red{
-background:#d93025;
-}
-
-.blue{
-background:#2563eb;
-}
-
-.checkout,
-.admin{
-display:none;
-background:white;
-padding:25px;
-border-radius:15px;
-margin-top:25px;
-}
-
-input,
-textarea,
-select{
-width:100%;
-padding:13px;
-border:1px solid #ddd;
-border-radius:8px;
-margin:7px 0 15px;
-}
-
-textarea{
-min-height:100px;
-resize:vertical;
-}
-
-.payment{
-background:#f5f5f5;
-padding:16px;
-border-radius:10px;
-margin-bottom:20px;
-}
-
-.dashboard{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
-margin:20px 0;
+.grid{
+    max-width:1120px;
+    margin:10px auto 80px;
+    padding:0 22px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:28px;
 }
 
 .card{
-background:#f7f7f7;
-padding:20px;
-border-radius:12px;
+    background:
+        linear-gradient(145deg,
+        rgba(13,34,55,.96),
+        rgba(4,28,24,.96));
+    border:1px solid rgba(0,201,139,.18);
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.30),
+        inset 0 1px rgba(255,255,255,.03);
+    transition:.25s ease;
 }
 
-.card strong{
-display:block;
-font-size:25px;
-margin-top:8px;
+.card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(0,201,139,.42);
+    box-shadow:
+        0 28px 75px rgba(0,0,0,.40),
+        0 0 30px rgba(0,201,139,.08);
 }
 
-.admin-section{
-border-top:1px solid #ddd;
-padding-top:25px;
-margin-top:25px;
+.card img{
+    width:100%;
+    height:255px;
+    object-fit:cover;
+    background:#071426;
 }
 
-.item{
-border:1px solid #ddd;
-padding:15px;
-border-radius:10px;
-margin:10px 0;
+.content{
+    padding:28px;
 }
 
-.status{
-display:inline-block;
-padding:5px 9px;
-border-radius:6px;
-background:#eee;
-font-size:12px;
+.content h3{
+    font-size:27px;
+    line-height:1.18;
+    margin-bottom:13px;
 }
+
+.desc{
+    color:#aabbb7;
+    font-size:16px;
+    line-height:1.7;
+    min-height:82px;
+}
+
+.price{
+    font-size:29px;
+    font-weight:900;
+    margin:20px 0;
+    color:#ffffff;
+}
+
+.buy{
+    width:100%;
+    border:0;
+    background:linear-gradient(135deg,#00d99a,#009f70);
+    color:#02130e;
+    padding:16px;
+    border-radius:13px;
+    font-weight:900;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 10px 28px rgba(0,201,139,.20);
+    transition:.2s;
+}
+
+.buy:hover{
+    transform:translateY(-3px);
+    filter:brightness(1.08);
+    box-shadow:0 15px 35px rgba(0,201,139,.30);
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
+    z-index:20;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.box{
+    background:
+        linear-gradient(145deg,#0b1d35,#061b17);
+    border:1px solid rgba(0,201,139,.22);
+    border-radius:22px;
+    max-width:540px;
+    width:100%;
+    padding:28px;
+    max-height:90vh;
+    overflow:auto;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);
+}
+
+.close{
+    float:right;
+    border:0;
+    background:#142536;
+    color:#fff;
+    border-radius:50%;
+    width:35px;
+    height:35px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.box h2{
+    margin-top:0;
+    margin-bottom:10px;
+}
+
+.field{
+    margin:13px 0;
+}
+
+.field label{
+    display:block;
+    font-size:14px;
+    font-weight:800;
+    margin-bottom:7px;
+    color:#d9e6e3;
+}
+
+.field input,
+.field textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid rgba(0,201,139,.20);
+    border-radius:10px;
+    background:#071426;
+    color:#fff;
+    outline:none;
+}
+
+.field input:focus,
+.field textarea:focus{
+    border-color:#00c98b;
+    box-shadow:0 0 0 3px rgba(0,201,139,.08);
+}
+
+.pay{
+    background:
+        linear-gradient(135deg,
+        rgba(0,201,139,.09),
+        rgba(10,35,60,.65));
+    border:1px solid rgba(0,201,139,.20);
+    padding:16px;
+    border-radius:13px;
+    margin:16px 0;
+    line-height:1.9;
+    color:#d9e6e3;
+}
+
+.confirm{
+    background:linear-gradient(135deg,#00c98b,#008f66);
+    color:#02130e;
+}
+
+.small{
+    font-size:12px;
+    color:#8fa39e;
+    margin-top:12px;
+}
+
+/* FOOTER */
 
 footer{
-background:#111;
-color:white;
-text-align:center;
-padding:30px;
-margin-top:40px;
+    text-align:center;
+    color:#7f9791;
+    padding:45px 20px;
+    border-top:1px solid rgba(0,201,139,.12);
+    background:rgba(2,8,13,.55);
 }
 
-.hidden{
-display:none!important;
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .nav{
+        padding:13px 16px;
+    }
+
+    .logo{
+        font-size:19px;
+    }
+
+    .logo:before{
+        width:37px;
+        height:37px;
+    }
+
+    .hero{
+        padding:52px 18px 40px;
+    }
+
+    .hero h1{
+        font-size:37px;
+        letter-spacing:-1.4px;
+    }
+
+    .hero p{
+        font-size:17px;
+    }
+
+    .grid{
+        padding:0 16px;
+        margin-bottom:55px;
+    }
+
+    .card img{
+        height:220px;
+    }
+
+    .content{
+        padding:23px;
+    }
 }
 
 </style>
@@ -210,806 +402,280 @@ display:none!important;
 
 <header>
 
+<div class="nav">
+
 <div class="logo" id="storeName">
-Minha Loja Digital
+LOJA DIGITAL
 </div>
 
-<nav>
-
-<button onclick="mostrarLoja()">
-Loja
+<button class="help" onclick="openHelp()">
+Ajuda
 </button>
 
-<button onclick="mostrarAdmin()">
-Admin
-</button>
-
-</nav>
+</div>
 
 </header>
 
 
-<!-- ================= LOJA ================= -->
-
-<main id="loja">
-
-<div class="container">
-
 <section class="hero">
 
-<h1 id="heroTitle">
-Produtos Digitais
+<div class="badge">
+GUIA PRÁTICO DE EDUCAÇÃO DIGITAL
+</div>
+
+<h1>
+Conhecimento que pode fazer
+<strong>diferença</strong>
+no seu dia a dia.
 </h1>
 
-<p id="heroText">
-Escolha o seu produto e adquira agora.
-</p>
-
-</section>
-
-
-<section class="products" id="products"></section>
-
-
-<!-- CHECKOUT -->
-
-<section class="checkout" id="checkout">
-
-<h2>Finalizar compra</h2>
-
-<br>
-
-<div id="produtoCheckout"></div>
-
-<br>
-
-<label>Nome completo</label>
-
-<input
-id="clienteNome"
-type="text"
-placeholder="Seu nome"
->
-
-
-<label>WhatsApp</label>
-
-<input
-id="clienteWhatsApp"
-type="tel"
-placeholder="930000000"
->
-
-
-<label>E-mail</label>
-
-<input
-id="clienteEmail"
-type="email"
-placeholder="seuemail@gmail.com"
->
-
-
-<label>Método de pagamento</label>
-
-<select id="metodoPagamento"
-onchange="mostrarPagamento()">
-
-<option value="">
-Selecione
-</option>
-
-<option value="BCI">
-BCI
-</option>
-
-<option value="ATLANTICO">
-ATLÂNTICO
-</option>
-
-<option value="MULTICAIXA">
-MULTICAIXA Express
-</option>
-
-<option value="PAYPAY">
-PAYPAY
-</option>
-
-<option value="RODTPAY">
-RODTPAY
-</option>
-
-</select>
-
-
-<div
-class="payment"
-id="dadosPagamento">
-
-Selecione o método de pagamento.
-
-</div>
-
-
-<label>Comprovativo</label>
-
-<input
-type="file"
-id="comprovativo"
-accept="image/*,.pdf"
->
-
-
-<button
-class="green"
-onclick="enviarComprovativo()">
-
-Enviar comprovativo pelo WhatsApp
-
-</button>
-
-</section>
-
-
-<!-- AJUDA -->
-
-<section class="hero">
-
-<h2>Ajuda</h2>
-
-<br>
-
 <p>
-<strong>Como comprar?</strong><br>
-Escolha o produto, preencha os seus dados e realize o pagamento.
-</p>
-
-<br>
-
-<p>
-<strong>Como enviar o comprovativo?</strong><br>
-Anexe o comprovativo e envie pelo WhatsApp.
-</p>
-
-<br>
-
-<p>
-<strong>Suporte:</strong><br>
-WhatsApp: 930796256<br>
-E-mail: amarozeferino1@gmail.com
+Conteúdo direto, acessível e pensado para aplicação prática.
+Escolha o material que faz sentido para o seu objetivo.
 </p>
 
 </section>
 
-</div>
 
-</main>
-
-
-<!-- ================= ADMIN ================= -->
-
-<main id="admin" class="admin">
-
-<div class="container">
-
-<h1>Painel Administrativo</h1>
-
-<br>
-
-
-<!-- DASHBOARD -->
-
-<div class="dashboard">
-
-<div class="card">
-
-Vendas concluídas
-
-<strong id="totalVendas">
-0
-</strong>
-
-</div>
-
-<div class="card">
-
-Pedidos pendentes
-
-<strong id="pendentes">
-0
-</strong>
-
-</div>
-
-<div class="card">
-
-Faturamento
-
-<strong id="faturamento">
-0 Kz
-</strong>
-
-</div>
-
-<div class="card">
-
-Produtos
-
-<strong id="totalProdutos">
-0
-</strong>
-
-</div>
-
-<div class="card">
-
-Clientes
-
-<strong id="totalClientes">
-0
-</strong>
-
-</div>
-
-</div>
-
-
-<!-- PRODUTOS -->
-
-<section class="admin-section">
-
-<h2>Produtos</h2>
-
-<br>
-
-<input
-id="novoNome"
-placeholder="Nome do produto"
->
-
-<input
-id="novoPreco"
-type="number"
-placeholder="Preço em Kz"
->
-
-<textarea
-id="novoDescricao"
-placeholder="Descrição"
-></textarea>
-
-<input
-id="novoImagem"
-placeholder="URL da imagem"
->
-
-<input
-id="novoLink"
-placeholder="Link de entrega"
->
-
-<button
-class="blue"
-onclick="adicionarProduto()">
-
-Adicionar produto
-
-</button>
-
-<div id="listaProdutos"></div>
-
-</section>
-
-
-<!-- PEDIDOS -->
-
-<section class="admin-section">
-
-<h2>Pedidos</h2>
-
-<div id="listaPedidos"></div>
-
-</section>
-
-
-<!-- CONFIGURAÇÕES -->
-
-<section class="admin-section">
-
-<h2>Configuração da Loja</h2>
-
-<br>
-
-<input
-id="configNome"
-placeholder="Nome da loja"
->
-
-<input
-id="configWhatsApp"
-placeholder="WhatsApp"
->
-
-<input
-id="configEmail"
-placeholder="E-mail"
->
-
-<input
-id="configIBANBCI"
-placeholder="IBAN BCI"
->
-
-<input
-id="configIBANATL"
-placeholder="IBAN ATLÂNTICO"
->
-
-<input
-id="configMCX"
-placeholder="Multicaixa Express"
->
-
-<button
-onclick="guardarConfiguracao()">
-
-Guardar configurações
-
-</button>
-
-</section>
-
-</div>
-
-</main>
+<main class="grid" id="products"></main>
 
 
 <footer>
-
-<p id="footerName">
-Minha Loja Digital
-</p>
-
-<p>
-Suporte: 930796256
-</p>
-
-<p>
-amarozeferino1@gmail.com
-</p>
-
+© 2026 AMARO JACINTO · Conteúdo digital · Centro de ajuda
 </footer>
+
+
+<div class="modal" id="modal">
+
+<div class="box">
+
+<button class="close" onclick="closeModal()">
+×
+</button>
+
+<div id="modalContent"></div>
+
+</div>
+
+</div>
 
 
 <script>
 
-/* =====================================================
-   CONFIGURAÇÃO INICIAL
-===================================================== */
-
-let configuracao = JSON.parse(
-localStorage.getItem("configuracao")
-) || {
-
-nome:"Minha Loja Digital",
-
-whatsapp:"930796256",
-
-email:"amarozeferino1@gmail.com",
-
-ibanBCI:"000500008350448810197",
-
-ibanATL:"005500001369356810194",
-
-multicaixa:"930796256 / 922829238"
-
-};
-
-
-let produtos = JSON.parse(
-localStorage.getItem("produtos")
-) || [
+const products=[
 
 {
-
 id:1,
+name:"Como Fazer o Dinheiro Sobrar",
+price:"5.000 Kz",
+image:"https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80",
+desc:"Um guia prático para organizar melhor o dinheiro e transformar pequenos hábitos financeiros em resultados."
+},
 
-nome:"COMO FAZER O DINHEIRO SOBRAR",
-
-preco:5000,
-
-descricao:
-"Aprenda estratégias práticas para organizar melhor o seu dinheiro.",
-
-imagem:"https://via.placeholder.com/600x400",
-
-link:"https://exemplo.com/produto"
-
+{
+id:2,
+name:"Renda Passiva com Inteligência Artificial",
+price:"7.500 Kz",
+image:"https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80",
+desc:"Conteúdo digital sobre possibilidades de utilização da inteligência artificial para criar novas fontes de rendimento."
 }
 
 ];
 
 
-let pedidos = JSON.parse(
-localStorage.getItem("pedidos")
-) || [];
+const payments={
 
+"IBAN":"0000 0000 0000 0000 0000 0",
 
-let produtoAtual=null;
+"MULTICAIXA EXPRESS":"+244 900 000 000",
 
+"PAYPAY":"000000000",
 
-/* =====================================================
-   LOJA
-===================================================== */
-
-function carregarLoja(){
-
-document.getElementById("storeName").innerText=
-configuracao.nome;
-
-document.getElementById("footerName").innerText=
-configuracao.nome;
-
-let area=document.getElementById("products");
-
-area.innerHTML="";
-
-produtos.forEach(produto=>{
-
-area.innerHTML+=`
-
-<div class="product">
-
-<img
-src="${produto.imagem}"
-alt="${produto.nome}"
->
-
-<div class="product-content">
-
-<h3>
-${produto.nome}
-</h3>
-
-<p>
-${produto.descricao}
-</p>
-
-<div class="price">
-${Number(produto.preco).toLocaleString("pt-AO")} Kz
-</div>
-
-<button
-onclick="abrirCheckout(${produto.id})">
-
-Adquirir agora
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-/* =====================================================
-   CHECKOUT
-===================================================== */
-
-function abrirCheckout(id){
-
-produtoAtual=
-produtos.find(p=>p.id===id);
-
-document.getElementById(
-"produtoCheckout"
-).innerHTML=`
-
-<strong>
-${produtoAtual.nome}
-</strong>
-
-<br>
-
-${Number(produtoAtual.preco)
-.toLocaleString("pt-AO")} Kz
-
-`;
-
-document.getElementById(
-"checkout"
-).style.display="block";
-
-window.scrollTo({
-
-top:document.getElementById(
-"checkout"
-).offsetTop,
-
-behavior:"smooth"
-
-});
-
-}
-
-
-/* =====================================================
-   PAGAMENTOS
-===================================================== */
-
-function mostrarPagamento(){
-
-let metodo=
-document.getElementById(
-"metodoPagamento"
-).value;
-
-let area=
-document.getElementById(
-"dadosPagamento"
-);
-
-if(metodo==="BCI"){
-
-area.innerHTML=`
-
-<strong>BCI</strong><br><br>
-
-IBAN:<br>
-${configuracao.ibanBCI}
-
-`;
-
-}
-
-else if(metodo==="ATLANTICO"){
-
-area.innerHTML=`
-
-<strong>ATLÂNTICO</strong><br><br>
-
-IBAN:<br>
-${configuracao.ibanATL}
-
-`;
-
-}
-
-else if(metodo==="MULTICAIXA"){
-
-area.innerHTML=`
-
-<strong>MULTICAIXA Express</strong><br><br>
-
-${configuracao.multicaixa}
-
-`;
-
-}
-
-else if(metodo==="PAYPAY"){
-
-area.innerHTML=`
-
-<strong>PAYPAY</strong><br><br>
-
-Configure os dados no painel administrativo.
-
-`;
-
-}
-
-else if(metodo==="RODTPAY"){
-
-area.innerHTML=`
-
-<strong>RODTPAY</strong><br><br>
-
-Configure os dados no painel administrativo.
-
-`;
-
-}
-
-else{
-
-area.innerText=
-"Selecione o método de pagamento.";
-
-}
-
-}
-
-
-/* =====================================================
-   PEDIDO
-===================================================== */
-
-function criarPedido(){
-
-let nome=
-document.getElementById(
-"clienteNome"
-).value;
-
-let whatsapp=
-document.getElementById(
-"clienteWhatsApp"
-).value;
-
-let email=
-document.getElementById(
-"clienteEmail"
-).value;
-
-let pagamento=
-document.getElementById(
-"metodoPagamento"
-).value;
-
-
-if(!nome||!whatsapp||!email||!pagamento){
-
-alert(
-"Preencha todos os dados."
-);
-
-return null;
-
-}
-
-
-let pedido={
-
-id:
-"PED-"+Date.now(),
-
-cliente:nome,
-
-whatsapp:whatsapp,
-
-email:email,
-
-produto:produtoAtual.nome,
-
-produtoId:produtoAtual.id,
-
-valor:produtoAtual.preco,
-
-pagamento:pagamento,
-
-estado:"Aguardando confirmação",
-
-data:new Date().toLocaleString("pt-AO"),
-
-comprovativo:false
+"RODTPAY":"Dados de pagamento"
 
 };
 
 
-pedidos.push(pedido);
-
-localStorage.setItem(
-"pedidos",
-JSON.stringify(pedidos)
-);
-
-return pedido;
-
-}
+const whatsapp="244900000000";
 
 
-/* =====================================================
-   WHATSAPP
-===================================================== */
+function render(){
 
-function enviarComprovativo(){
+document.getElementById("products").innerHTML=
 
-let pedido=criarPedido();
+products.map(p=>`
 
-if(!pedido)return;
+<article class="card">
 
+<img
+src="${p.image}"
+alt="${p.name}"
+>
 
-let mensagem=
+<div class="content">
 
-"NOVO PEDIDO%0A%0A"+
+<h3>
+${p.name}
+</h3>
 
-"Pedido: "+pedido.id+"%0A"+
+<div class="desc">
+${p.desc}
+</div>
 
-"Cliente: "+pedido.cliente+"%0A"+
+<div class="price">
+${p.price}
+</div>
 
-"WhatsApp: "+pedido.whatsapp+"%0A"+
+<button
+class="buy"
+onclick="buy(${p.id})"
+>
+Adquirir agora
+</button>
 
-"E-mail: "+pedido.email+"%0A"+
+</div>
 
-"Produto: "+pedido.produto+"%0A"+
+</article>
 
-"Valor: "+pedido.valor+" Kz%0A"+
-
-"Pagamento: "+pedido.pagamento+"%0A%0A"+
-
-"O comprovativo será enviado nesta conversa.";
-
-
-window.open(
-
-"https://wa.me/244"+
-configuracao.whatsapp+
-"?text="+mensagem,
-
-"_blank"
-
-);
-
-atualizarDashboard();
+`).join("");
 
 }
 
 
-/* =====================================================
-   ADMIN
-===================================================== */
+function buy(id){
 
-function mostrarAdmin(){
+const p=products.find(x=>x.id===id);
 
-document.getElementById("loja")
-.style.display="none";
+document.getElementById("modalContent").innerHTML=`
 
-document.getElementById("admin")
-.style.display="block";
+<h2>
+Comprar: ${p.name}
+</h2>
 
-carregarAdmin();
+<p>
+<b>${p.price}</b>
+</p>
+
+<div class="field">
+
+<label>
+Nome
+</label>
+
+<input
+id="name"
+placeholder="Seu nome"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+WhatsApp
+</label>
+
+<input
+id="phone"
+placeholder="+244 ..."
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+E-mail
+</label>
+
+<input
+id="email"
+type="email"
+placeholder="seu@email.com"
+>
+
+</div>
+
+
+<div class="pay">
+
+<b>
+Métodos de pagamento
+</b>
+
+<br><br>
+
+${Object.entries(payments).map(([k,v])=>`
+
+<b>${k}:</b> ${v}
+
+<br>
+
+`).join("")}
+
+</div>
+
+
+<div class="field">
+
+<label>
+Comprovativo
+</label>
+
+<input
+id="proof"
+type="file"
+accept="image/*,.pdf"
+>
+
+</div>
+
+
+<button
+class="buy confirm"
+onclick="sendProof(${id})"
+>
+
+Enviar comprovativo pelo WhatsApp
+
+</button>
+
+
+<p class="small">
+
+Após a confirmação do pagamento,
+o link de acesso será enviado para
+o WhatsApp e/ou e-mail informado.
+
+</p>
+
+`;
+
+document.getElementById("modal").style.display="flex";
 
 }
 
 
-function mostrarLoja(){
+function sendProof(id){
 
-document.getElementById("admin")
-.style.display="none";
+const p=products.find(x=>x.id===id);
 
-document.getElementById("loja")
-.style.display="block";
+const name=
+document.getElementById("name").value;
 
-carregarLoja();
+const phone=
+document.getElementById("phone").value;
 
-}
-
-
-/* =====================================================
-   ADICIONAR PRODUTO
-===================================================== */
-
-function adicionarProduto(){
-
-let nome=
-document.getElementById("novoNome").value;
-
-let preco=
-Number(
-document.getElementById("novoPreco").value
-);
-
-let descricao=
-document.getElementById("novoDescricao").value;
-
-let imagem=
-document.getElementById("novoImagem").value
-||"https://via.placeholder.com/600x400";
-
-let link=
-document.getElementById("novoLink").value;
+const email=
+document.getElementById("email").value;
 
 
-if(!nome||!preco){
+if(!name||!phone||!email){
 
 alert(
-"Informe pelo menos nome e preço."
+"Preencha nome, WhatsApp e e-mail."
 );
 
 return;
@@ -1017,432 +683,94 @@ return;
 }
 
 
-produtos.push({
+const text=
 
-id:Date.now(),
+`Olá. Fiz uma compra na Loja Digital.
 
-nome:nome,
+Produto: ${p.name}
 
-preco:preco,
+Valor: ${p.price}
 
-descricao:descricao,
+Cliente: ${name}
 
-imagem:imagem,
+WhatsApp: ${phone}
 
-link:link
+E-mail: ${email}
 
-});
-
-
-localStorage.setItem(
-"produtos",
-JSON.stringify(produtos)
-);
-
-
-document.getElementById("novoNome").value="";
-
-document.getElementById("novoPreco").value="";
-
-document.getElementById("novoDescricao").value="";
-
-document.getElementById("novoImagem").value="";
-
-document.getElementById("novoLink").value="";
-
-
-carregarAdmin();
-
-carregarLoja();
-
-}
-
-
-/* =====================================================
-   LISTA DE PRODUTOS
-===================================================== */
-
-function listarProdutosAdmin(){
-
-let area=
-document.getElementById(
-"listaProdutos"
-);
-
-area.innerHTML="";
-
-
-produtos.forEach(p=>{
-
-area.innerHTML+=`
-
-<div class="item">
-
-<strong>
-${p.nome}
-</strong>
-
-<br>
-
-${Number(p.preco)
-.toLocaleString("pt-AO")} Kz
-
-<br><br>
-
-<button
-class="red"
-onclick="eliminarProduto(${p.id})">
-
-Eliminar
-
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-function eliminarProduto(id){
-
-produtos=
-produtos.filter(p=>p.id!==id);
-
-localStorage.setItem(
-"produtos",
-JSON.stringify(produtos)
-);
-
-carregarAdmin();
-
-carregarLoja();
-
-}
-
-
-/* =====================================================
-   PEDIDOS ADMIN
-===================================================== */
-
-function listarPedidos(){
-
-let area=
-document.getElementById(
-"listaPedidos"
-);
-
-area.innerHTML="";
-
-
-if(pedidos.length===0){
-
-area.innerHTML=
-"<p>Nenhum pedido ainda.</p>";
-
-return;
-
-}
-
-
-pedidos
-.slice()
-.reverse()
-.forEach(p=>{
-
-area.innerHTML+=`
-
-<div class="item">
-
-<strong>${p.produto}</strong>
-
-<br>
-
-Cliente:
-${p.cliente}
-
-<br>
-
-WhatsApp:
-${p.whatsapp}
-
-<br>
-
-Valor:
-${Number(p.valor)
-.toLocaleString("pt-AO")} Kz
-
-<br>
-
-Pagamento:
-${p.pagamento}
-
-<br>
-
-Estado:
-<span class="status">
-${p.estado}
-</span>
-
-<br>
-
-Data:
-${p.data}
-
-<br><br>
-
-<button
-class="green"
-onclick="confirmarPagamento('${p.id}')">
-
-Confirmar pagamento
-
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-/* =====================================================
-   CONFIRMAR PAGAMENTO
-===================================================== */
-
-function confirmarPagamento(id){
-
-let pedido=
-pedidos.find(p=>p.id===id);
-
-if(!pedido)return;
-
-
-pedido.estado=
-"Pagamento confirmado";
-
-
-localStorage.setItem(
-"pedidos",
-JSON.stringify(pedidos)
-);
-
-
-let produto=
-produtos.find(
-p=>p.id===pedido.produtoId
-);
-
-
-if(produto){
-
-let mensagem=
-
-"Pagamento confirmado!%0A%0A"+
-
-"Olá "+pedido.cliente+"!%0A%0A"+
-
-"Seu pagamento foi confirmado.%0A%0A"+
-
-"Produto: "+produto.nome+"%0A"+
-
-"Link de acesso:%0A"+
-encodeURIComponent(produto.link);
+Estou a enviar o comprovativo de pagamento.`;
 
 
 window.open(
-
-"https://wa.me/244"+
-pedido.whatsapp+
-"?text="+mensagem,
-
+`https://wa.me/${whatsapp}?text=${encodeURIComponent(text)}`,
 "_blank"
-
 );
 
 }
 
 
-carregarAdmin();
+function openHelp(){
+
+document.getElementById("modalContent").innerHTML=`
+
+<h2>
+Centro de ajuda
+</h2>
+
+<p>
+
+<b>Como comprar?</b>
+
+<br>
+
+Escolha um produto,
+preencha os seus dados,
+faça o pagamento e envie
+o comprovativo.
+
+</p>
+
+<br>
+
+<p>
+
+<b>Quando recebo o produto?</b>
+
+<br>
+
+Após a confirmação do pagamento,
+o acesso será enviado pelo contacto
+informado.
+
+</p>
+
+<br>
+
+<p>
+
+<b>Precisa de suporte?</b>
+
+<br>
+
+Use o WhatsApp da loja
+para falar com o atendimento.
+
+</p>
+
+`;
+
+document.getElementById("modal").style.display="flex";
 
 }
 
 
-/* =====================================================
-   DASHBOARD
-===================================================== */
+function closeModal(){
 
-function atualizarDashboard(){
-
-let concluidas=
-pedidos.filter(
-p=>p.estado==="Pagamento confirmado"
-);
-
-let pendentes=
-pedidos.filter(
-p=>p.estado!=="Pagamento confirmado"
-);
-
-
-let faturamento=
-concluidas.reduce(
-(total,p)=>total+Number(p.valor),
-0
-);
-
-
-document.getElementById(
-"totalVendas"
-).innerText=
-concluidas.length;
-
-
-document.getElementById(
-"pendentes"
-).innerText=
-pendentes.length;
-
-
-document.getElementById(
-"faturamento"
-).innerText=
-faturamento.toLocaleString("pt-AO")
-+" Kz";
-
-
-document.getElementById(
-"totalProdutos"
-).innerText=
-produtos.length;
-
-
-let clientes=
-new Set(
-pedidos.map(p=>p.email)
-);
-
-
-document.getElementById(
-"totalClientes"
-).innerText=
-clientes.size;
+document.getElementById("modal").style.display="none";
 
 }
 
 
-/* =====================================================
-   CONFIGURAÇÃO
-===================================================== */
-
-function guardarConfiguracao(){
-
-configuracao.nome=
-document.getElementById(
-"configNome"
-).value
-||configuracao.nome;
-
-
-configuracao.whatsapp=
-document.getElementById(
-"configWhatsApp"
-).value
-||configuracao.whatsapp;
-
-
-configuracao.email=
-document.getElementById(
-"configEmail"
-).value
-||configuracao.email;
-
-
-configuracao.ibanBCI=
-document.getElementById(
-"configIBANBCI"
-).value
-||configuracao.ibanBCI;
-
-
-configuracao.ibanATL=
-document.getElementById(
-"configIBANATL"
-).value
-||configuracao.ibanATL;
-
-
-configuracao.multicaixa=
-document.getElementById(
-"configMCX"
-).value
-||configuracao.multicaixa;
-
-
-localStorage.setItem(
-"configuracao",
-JSON.stringify(configuracao)
-);
-
-
-carregarLoja();
-
-alert(
-"Configurações guardadas."
-);
-
-}
-
-
-/* =====================================================
-   CARREGAR ADMIN
-===================================================== */
-
-function carregarAdmin(){
-
-document.getElementById(
-"configNome"
-).value=configuracao.nome;
-
-document.getElementById(
-"configWhatsApp"
-).value=configuracao.whatsapp;
-
-document.getElementById(
-"configEmail"
-).value=configuracao.email;
-
-document.getElementById(
-"configIBANBCI"
-).value=configuracao.ibanBCI;
-
-document.getElementById(
-"configIBANATL"
-).value=configuracao.ibanATL;
-
-document.getElementById(
-"configMCX"
-).value=configuracao.multicaixa;
-
-
-listarProdutosAdmin();
-
-listarPedidos();
-
-atualizarDashboard();
-
-}
-
-
-/* =====================================================
-   INICIALIZAÇÃO
-===================================================== */
-
-carregarLoja();
+render();
 
 </script>
 
